@@ -1,0 +1,183 @@
+<html>
+<head>
+<title>ch2_Objects_in_Python.ipynb</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #699856;}
+.s1 { color: #d4d4d4;}
+.s2 { color: #cd9069;}
+.s3 { color: #fdfcfc;}
+.s4 { color: #b4cda8;}
+.s5 { color: #47a2ed;}
+</style>
+</head>
+<body bgcolor="#1e1e1e">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ch2_Objects_in_Python.ipynb</font>
+</center></td></tr></table>
+<pre><span class="s0">#%% md 
+</span><span class="s1"># OBJECTS in PYTHON 
+</span><span class="s0">#%% md 
+</span><span class="s1"># INTRODUCING TYPE HINTS 
+ 
+Objects are Python’s abstraction for data. All data in a Python program is represented by objects or by relations between objects. 
+ 
+Every object has an identity, a type and a value. 
+ 
+The central idea here is that **everything in Python is an object**. 
+ 
+Objects are instances of types (classes).In other words, every object is defined by being an instance of at least one class. 
+ 
+So in fact, &quot;instance&quot; and &quot;object&quot; are two words for the same thing. 
+ 
+Lists are objects. 42 is an object. Modules are objects. Functions are objects. Python bytecode is also kept in an object. 
+ 
+When we write literal values like &quot;Hello, world!&quot; or 42, we're actually creating instances of built-in classes. 
+ 
+We use the built-in type() function on the class that defines the properties of these objects: 
+</span><span class="s0">#%% 
+</span><span class="s1">type(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="s1">)</span>
+
+<span class="s0">#%% md 
+</span><span class="s1">A variable is a referance to an object. Think of a yellow sticky note with a name on it stuck to an object. 
+ 
+The type information is defined by the class associated with the object. 
+ 
+The type information is not attached to the variable in any way.  
+ 
+</span><span class="s0">#%% 
+</span><span class="s1">a_string_variable </span><span class="s3">= </span><span class="s2">&quot;Strng&quot;</span>
+<span class="s1">type(a_string_variable)</span>
+<span class="s0">#%% 
+</span><span class="s1">id(a_string_variable)</span>
+<span class="s0">#%% 
+</span><span class="s1">hash(a_string_variable)</span>
+<span class="s0">#%% 
+</span><span class="s1">a_string_variable </span><span class="s3">= </span><span class="s4">42</span>
+<span class="s1">type(a_string_variable)</span>
+<span class="s0">#%% 
+</span><span class="s1">id(a_string_variable)</span>
+<span class="s0">#%% 
+</span><span class="s1">hash(a_string_variable)</span>
+<span class="s0">#%% md 
+</span><span class="s1">We created an object using a built-in class, str. We assigned a long name, a_string_variable, to the object.  
+ 
+Then, we created an object using a different built-in class, int. We assigned this object the same name.  
+ 
+(The previous string object has no more references and ceases to exist.) 
+ 
+The various properties (type, id, hash) are part of the object, not the variable. 
+ 
+**The variable is just a name that refers to an object**. 
+</span><span class="s0">#%% md 
+</span><span class="s1">## CREATING PYTHON CLASSES 
+ 
+In the olden days, there was a difference between user-defined classes and built in types. But since Pytohn 2.2, there is no real difference.  
+ 
+**Essentially, a class is a mechanism Python gives us to create new user-defined types from Python code**. 
+ 
+Using the class mechanism, we've created Eralp - a user-defined type.  
+ 
+m is an instance of the class Eralp. In other words, it's an object and its type is Eralp. 
+</span><span class="s0">#%% 
+</span><span class="s5">class </span><span class="s1">Eralp</span><span class="s3">:</span>
+    <span class="s5">pass</span>
+
+<span class="s1">m </span><span class="s3">= </span><span class="s1">Eralp()</span>
+<span class="s0">#%% 
+</span><span class="s1">type(m)</span>
+<span class="s0">#%% md 
+</span>
+
+<span class="s1">The class definition starts with the class keyword, followed by the name of the class and ends with a colon. 
+ 
+Class names shall be written in CamelCase. 
+ 
+Creating an instance of a class is a matter of typing the class name, followed by a pair of parentheses.  
+ 
+It looks much like a function call; calling a class will create a new object. 
+</span><span class="s0">#%% 
+</span><span class="s5">class </span><span class="s1">MyFirstClass</span><span class="s3">:</span>
+    <span class="s5">pass</span>
+<span class="s0">#%% 
+</span><span class="s1">a </span><span class="s3">= </span><span class="s1">MyFirstClass()</span>
+<span class="s1">b </span><span class="s3">= </span><span class="s1">MyFirstClass()</span>
+<span class="s0">#%% 
+</span><span class="s1">print(a)</span>
+<span class="s0">#%% 
+</span><span class="s1">print(b)</span>
+<span class="s0">#%% md 
+</span><span class="s1">## ADDING ATTRIBUTES TO A CLASS 
+ 
+We can set arbitrary attributes on an instantiated object using dot notation. 
+</span><span class="s0">#%% 
+</span><span class="s5">class </span><span class="s1">Point</span><span class="s3">:</span>
+    <span class="s5">pass</span>
+
+
+<span class="s0">#%% 
+</span><span class="s1">p1 </span><span class="s3">= </span><span class="s1">Point()</span>
+<span class="s1">p2 </span><span class="s3">= </span><span class="s1">Point()</span>
+<span class="s0">#%% 
+</span><span class="s1">p1.x </span><span class="s3">= </span><span class="s4">5</span>
+<span class="s1">p1.y </span><span class="s3">= </span><span class="s4">4</span>
+
+<span class="s0">#%% 
+</span><span class="s1">p2.x </span><span class="s3">= </span><span class="s4">3</span>
+<span class="s1">p2.y </span><span class="s3">= </span><span class="s4">6</span>
+<span class="s0">#%% 
+</span><span class="s1">print(p1.x, p1.y)</span>
+<span class="s0">#%% 
+</span><span class="s1">print(p2.x, p2.y)</span>
+<span class="s0">#%% md 
+</span><span class="s1">Above code creates an empty Point class with no data or behaviors. Then, it creates two instances of that class and assigns each of those instances x and y coordinates to identify a point in two dimensions.  
+ 
+All we need to do to assign a value to an attribute on an object is use the &quot;&lt; object &gt;&quot;.&quot;&lt; attribute &gt;&quot; = &quot;&lt; value &gt;&quot; syntax.  
+ 
+This is sometimes referred to as dot notation. 
+</span><span class="s0">#%% md 
+</span><span class="s1">## Making it Do Something 
+ 
+Having objects with attributes is nice, but it's not very useful unless we can add some behaviors to those objects. 
+ 
+Object Oriented Programming (OOP) is really about the interactions between objects. 
+ 
+We have the data (attributes). Now we need to add some behaviors (methods). 
+ 
+Let's add a &quot;reset&quot; method to our Point class that will reset the coordinates to 0, 0. 
+</span><span class="s0">#%% 
+</span><span class="s5">class </span><span class="s1">Point</span><span class="s3">:</span>
+    <span class="s5">def </span><span class="s1">reset(self)</span><span class="s3">:</span>
+        <span class="s1">self.x </span><span class="s3">= </span><span class="s4">0</span>
+        <span class="s1">self.y </span><span class="s3">= </span><span class="s4">0</span>
+<span class="s0">#%% 
+</span><span class="s1">p </span><span class="s3">= </span><span class="s1">Point()</span>
+<span class="s0">#%% 
+</span><span class="s1">p.reset()</span>
+<span class="s0">#%% 
+</span><span class="s1">print(p.x, p.y)</span>
+<span class="s0">#%% md 
+</span><span class="s1">In Python, a meyhod is formatted identically to a function.  
+ 
+It starts with the def keyword, followed by the method name and a pair of parentheses containing any arguments (parameters). 
+ 
+The difference between a function and a method is that methods have one required argument. 
+ 
+**This argument is convebtionally called self**. 
+ 
+</span><span class="s0">#%% md 
+</span><span class="s1">The self argument to a method is a reference to the object that the method is being invoked on. 
+ 
+The object is an instance of a class and this is sometimes called the instance variable. 
+ 
+_We can think of the method as a function attached to a class._ 
+ 
+_The **self** parameter refers to a specific instance of the class_ 
+ 
+_When you call the method on two different objects, you are calling the same method twice but passing two different objects as the self parameter_  
+</span><span class="s0">#%% 
+</span></pre>
+</body>
+</html>
